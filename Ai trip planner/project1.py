@@ -3,8 +3,8 @@ import tkinter as tk
 from tkinter import messagebox, scrolledtext
 from google.generativeai import configure, GenerativeModel
 
-# Configure Gemini API (Replace with your own API key)
-configure(api_key="AIzaSyBWDBI-xyuSplqZAt_A235WL5K5vfO6U-4")
+
+configure(api_key="Your ApI key")
 gemini_model = GenerativeModel("gemini-2.0-flash")
 
 class PlannerState(TypedDict):
@@ -14,7 +14,7 @@ class PlannerState(TypedDict):
     days: int
     itinerary: str
 
-# Generate an itinerary using Gemini AI
+
 def generate_itinerary(city: str, interests: List[str], days: int) -> str:
     interest_str = ", ".join(interests)
     

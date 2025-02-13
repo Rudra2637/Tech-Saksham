@@ -2,35 +2,33 @@ import streamlit as st
 import requests
 
 def get_weather(location):
-    # Replace with your OpenWeatherMap API key
-    api_key = "87b8502249e686620b7affc0f5e214bd"
+   
+    api_key = "Api key"
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
+
+    complete_url = f"{base_url}q={location}&appid={api_key}&units=metric"  
     
-    # Construct the full URL
-    complete_url = f"{base_url}q={location}&appid={api_key}&units=metric"  # You can use 'metric' for Celsius
-    
-    # Make the request to the OpenWeatherMap API
+  
     response = requests.get(complete_url)
-    
-    # If the request was successful (status code 200)
+   
     if response.status_code == 200:
-        data = response.json()  # Convert response to JSON
+        data = response.json() 
         main = data['main']
         weather = data['weather'][0]
         
-        # Extracting temperature, humidity, and description
+    
         temp = main['temp']
         humidity = main['humidity']
         description = weather['description']
-        icon = weather['icon']  # Get the weather icon code
+        icon = weather['icon']  
         
         return temp, humidity, description, icon
     else:
-        # If the location is not found
+     
         return None
 
 def main():
-    # Setting a custom background image with CSS
+   
     st.markdown("""
         <style>
             .stApp {
@@ -55,18 +53,18 @@ def main():
         """
     )
     
-    # User input for location
+
     location = st.text_input("Enter a location:", placeholder="e.g., New York")
     
     if st.button("Get Weather"):
         if location:
-            # Fetch weather data
+            
             weather_data = get_weather(location)
             
             if weather_data:
                 temp, humidity, description, icon = weather_data
                 
-                # Display weather details with icon
+                
                 st.image(f"http://openweathermap.org/img/wn/{icon}.png", width=100)  # Display weather icon
                 st.write(f"### Weather in {location.capitalize()}:")
                 st.write(f"**Temperature:** {temp}°C")
