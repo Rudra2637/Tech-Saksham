@@ -2,8 +2,7 @@ from typing import TypedDict, Annotated, List
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
 from google.generativeai import configure, GenerativeModel
-
-
+#hello
 configure(api_key="Your ApI key")
 gemini_model = GenerativeModel("gemini-2.0-flash")
 
